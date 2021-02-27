@@ -11,6 +11,10 @@ import { LocationDetailsComponent } from './components/location-details/location
 import { CurrentWeatherComponent } from './components/current-weather/current-weather.component';
 import { WeatherForecastComponent } from './components/weather-forecast/weather-forecast.component';
 import { LocationEntryFormComponent } from './components/location-entry-form/location-entry-form.component';
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { environment } from 'src/environments/environment';
 
 @NgModule({
   declarations: [
@@ -23,7 +27,17 @@ import { LocationEntryFormComponent } from './components/location-entry-form/loc
     WeatherForecastComponent,
     LocationEntryFormComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, BrowserAnimationsModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    StoreModule.forRoot({}),
+    EffectsModule.forRoot([]),
+    StoreDevtoolsModule.instrument({
+      maxAge: 25,
+      logOnly: environment.production,
+    }),
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })
