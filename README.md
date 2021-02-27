@@ -1,5 +1,17 @@
 # NgWeather
 
+## Setup
+
+Before building the project, create a file with your API keys. Create this file as `src/environments/environment.secret.ts` and give it the following contents (replacing the keys with the correct values):
+
+```typescript
+export const environmentSecret = {
+  weatherApiKey: "QWERTYUIOPASDFGHJKLZXCVBNM",
+};
+```
+
+---
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.1.1.
 
 ## Development server
