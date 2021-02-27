@@ -42,7 +42,7 @@ export class GeoLocationService {
               'Getting location is taking longer than expected. Please ensure your system level permissions are set to allow location permissions to your web browser.'
             )
           );
-        }, 5000);
+        }, 7000);
       }
     });
   }

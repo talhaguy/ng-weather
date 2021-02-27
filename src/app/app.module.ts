@@ -1,7 +1,9 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -19,6 +21,7 @@ import { environment } from 'src/environments/environment';
 import { ConfirmationService } from 'primeng/api';
 import { reducers } from './store/app.reducer';
 import { effects } from './store/app.effects';
+import { WeatherApiKeyInterceptor } from './interceptors/weather-api-key.interceptor';
 
 @NgModule({
   declarations: [
@@ -35,7 +38,9 @@ import { effects } from './store/app.effects';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    HttpClientModule,
     ConfirmDialogModule,
+    ProgressSpinnerModule,
     StoreModule.forRoot(reducers),
     EffectsModule.forRoot(effects),
     StoreDevtoolsModule.instrument({
@@ -43,7 +48,14 @@ import { effects } from './store/app.effects';
       logOnly: environment.production,
     }),
   ],
-  providers: [ConfirmationService],
+  providers: [
+    ConfirmationService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      multi: true,
+      useClass: WeatherApiKeyInterceptor,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

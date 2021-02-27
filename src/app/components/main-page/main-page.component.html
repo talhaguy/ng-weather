@@ -1,2 +1,23 @@
-<p>main-page works!</p>
 <app-location-entry-form></app-location-entry-form>
+
+<ng-container *ngIf="locationState$ | async as locationState">
+  <ng-container *ngIf="weatherState$ | async as weatherState">
+    <p-progressSpinner
+      *ngIf="locationState.loading || weatherState.loading; else doneLoading"
+    ></p-progressSpinner>
+
+    <ng-template #doneLoading>
+      <app-location-details
+        [locationName]="weatherState.locationName"
+        [time]="weatherState.date"
+        [weatherDescription]="weatherState.weatherDescription"
+      ></app-location-details>
+      <app-current-weather
+        [temperature]="weatherState.currentTemperature"
+        [precipitationProbability]="weatherState.precipitationProbability"
+        [humidityPercentage]="weatherState.humidityPercentage"
+        [windSpeed]="weatherState.windSpeed"
+      ></app-current-weather>
+    </ng-template>
+  </ng-container>
+</ng-container>

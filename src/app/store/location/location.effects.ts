@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import * as locationActions from './location.actions';
+import * as weatherActions from '../weather/weather.actions';
 import { catchError, exhaustMap, map, switchMap, tap } from 'rxjs/operators';
 import {
   GeolocationPermissionStatus,
@@ -57,6 +58,7 @@ export class LocationEffects {
             latitude: position.coords.latitude,
             longitude: position.coords.longitude,
           }),
+          weatherActions.getCurrentForecastStart(),
         ];
       }),
       catchError((error) => {

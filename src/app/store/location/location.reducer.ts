@@ -17,7 +17,7 @@ export const locationReducer = createReducer(
     };
   }),
 
-  on(locationActions.grantPermission, (state) => {
+  on(locationActions.denyPermission, (state) => {
     return {
       ...state,
       isLocationPermissionGranted: false,
