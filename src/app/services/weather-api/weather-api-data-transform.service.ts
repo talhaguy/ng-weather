@@ -1,6 +1,12 @@
 import { Injectable } from '@angular/core';
-import { WeatherDailyForecast } from 'src/app/store/weather/WeatherState';
-import { OneCallForecastDaily } from './OneCallForecastResponse';
+import {
+  WeatherDailyForecast,
+  WeatherHourlyForecast,
+} from 'src/app/store/weather/WeatherState';
+import {
+  OneCallForecastDaily,
+  OneCallForecastHourly,
+} from './OneCallForecastResponse';
 
 @Injectable({
   providedIn: 'root',
@@ -24,5 +30,18 @@ export class WeatherApiDataTransformService {
         };
       }
     );
+  }
+
+  convertOneCallHourlyToHourlyForecast(
+    oneCallHourlyForecastList: OneCallForecastHourly[]
+  ) {
+    const list = [];
+    for (let i = 0; i < oneCallHourlyForecastList.length && i < 25; i++) {
+      list.push({
+        date: oneCallHourlyForecastList[i].dt,
+        temperature: oneCallHourlyForecastList[i].temp,
+      });
+    }
+    return list;
   }
 }

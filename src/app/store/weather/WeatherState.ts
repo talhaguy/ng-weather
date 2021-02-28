@@ -11,6 +11,7 @@ export interface WeatherState {
   currentWindSpeed?: number;
   currentWeatherIcon?: string;
   dailyForecast?: WeatherDailyForecast[];
+  hourlyForecast?: WeatherHourlyForecast[];
 }
 
 export interface WeatherDailyForecast {
@@ -18,4 +19,9 @@ export interface WeatherDailyForecast {
   icon?: string;
   high: number;
   low: number;
+}
+
+export interface WeatherHourlyForecast {
+  date: number;
+  temperature: number;
 }

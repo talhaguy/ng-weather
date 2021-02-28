@@ -82,6 +82,9 @@ export class WeatherEffects {
                 weatherDailyForecastList: this.weatherApiDataTransformService.convertOneCallDailyToDailyForecast(
                   data.daily
                 ),
+                weatherHourlyForecastList: this.weatherApiDataTransformService.convertOneCallHourlyToHourlyForecast(
+                  data.hourly
+                ),
               });
             }),
             catchError((error) => {

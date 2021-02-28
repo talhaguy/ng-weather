@@ -67,6 +67,7 @@ export const weatherReducer = createReducer(
       loading: state.loadingCurrent || !state.loadingOneCall,
       currentPrecipitationProbability: action.currentPrecipitationProbability,
       dailyForecast: action.weatherDailyForecastList.slice(),
+      hourlyForecast: action.weatherHourlyForecastList.slice(),
     };
   })
 );

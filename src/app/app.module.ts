@@ -28,6 +28,8 @@ import { WeatherForecastDayComponent } from './components/weather-forecast-day/w
 import { WeatherIconUrlPipe } from './pipes/weather-icon-url.pipe';
 import { UnitConversionPipe } from './pipes/unit-conversion.pipe';
 import { FormsModule } from '@angular/forms';
+import { WeatherForecastHourChartComponent } from './components/weather-forecast-hour-chart/weather-forecast-hour-chart.component';
+import { DatePipe } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -43,6 +45,7 @@ import { FormsModule } from '@angular/forms';
     WeatherForecastDayComponent,
     WeatherIconUrlPipe,
     UnitConversionPipe,
+    WeatherForecastHourChartComponent,
   ],
   imports: [
     BrowserModule,
@@ -62,6 +65,8 @@ import { FormsModule } from '@angular/forms';
   ],
   providers: [
     ConfirmationService,
+    DatePipe,
+    UnitConversionPipe,
     {
       provide: HTTP_INTERCEPTORS,
       multi: true,

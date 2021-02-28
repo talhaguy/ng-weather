@@ -1,5 +1,5 @@
 import { createAction, props } from '@ngrx/store';
-import { WeatherDailyForecast } from './WeatherState';
+import { WeatherDailyForecast, WeatherHourlyForecast } from './WeatherState';
 
 // MARK: Current, Get by Coordinates
 
@@ -57,4 +57,5 @@ export const getOneCallForecastSuccess = createAction(
 export interface OneCallForecastSuccessPayload {
   currentPrecipitationProbability: number;
   weatherDailyForecastList: WeatherDailyForecast[];
+  weatherHourlyForecastList: WeatherHourlyForecast[];
 }

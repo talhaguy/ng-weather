@@ -42,6 +42,11 @@
       ></p-progressSpinner>
 
       <ng-template #doneLoadingOneCall>
+        <app-weather-forecast-hour-chart
+          *ngIf="weatherState.hourlyForecast"
+          [hourlyForecastList]="weatherState.hourlyForecast"
+        ></app-weather-forecast-hour-chart>
+
         <app-weather-forecast
           [weatherForDayList]="weatherState.dailyForecast"
         ></app-weather-forecast>
