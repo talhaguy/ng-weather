@@ -1,4 +1,6 @@
-<div>{{ temperature }}</div>
-<div>{{ precipitationProbability }}</div>
-<div>{{ humidityPercentage }}</div>
-<div>{{ windSpeed }}</div>
+<div *ngIf="!(temperature | isUndefined)">{{ temperature }}</div>
+<div *ngIf="!(precipitationProbability | isUndefined)">
+  {{ precipitationProbability }}
+</div>
+<div *ngIf="!(humidityPercentage | isUndefined)">{{ humidityPercentage }}</div>
+<div *ngIf="!(windSpeed | isUndefined)">{{ windSpeed }}</div>

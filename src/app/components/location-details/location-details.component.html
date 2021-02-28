@@ -1,3 +1,3 @@
-<div>{{ locationName }}</div>
-<div>{{ time | date }}</div>
-<div>{{ weatherDescription }}</div>
+<div *ngIf="!(locationName | isUndefined)">{{ locationName }}</div>
+<div *ngIf="!(time | isUndefined)">{{ time | date }}</div>
+<div *ngIf="!(weatherDescription | isUndefined)">{{ weatherDescription }}</div>

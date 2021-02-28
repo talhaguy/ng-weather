@@ -22,6 +22,7 @@ import { ConfirmationService } from 'primeng/api';
 import { reducers } from './store/app.reducer';
 import { effects } from './store/app.effects';
 import { WeatherApiKeyInterceptor } from './interceptors/weather-api-key.interceptor';
+import { IsUndefinedPipe } from './pipes/is-undefined.pipe';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { WeatherApiKeyInterceptor } from './interceptors/weather-api-key.interce
     CurrentWeatherComponent,
     WeatherForecastComponent,
     LocationEntryFormComponent,
+    IsUndefinedPipe,
   ],
   imports: [
     BrowserModule,

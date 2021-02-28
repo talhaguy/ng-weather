@@ -3,21 +3,37 @@
 <ng-container *ngIf="locationState$ | async as locationState">
   <ng-container *ngIf="weatherState$ | async as weatherState">
     <p-progressSpinner
-      *ngIf="locationState.loading || weatherState.loading; else doneLoading"
+      *ngIf="locationState.loading; else doneLoadingLocation"
     ></p-progressSpinner>
 
-    <ng-template #doneLoading>
-      <app-location-details
-        [locationName]="weatherState.locationName"
-        [time]="weatherState.date"
-        [weatherDescription]="weatherState.weatherDescription"
-      ></app-location-details>
-      <app-current-weather
-        [temperature]="weatherState.currentTemperature"
-        [precipitationProbability]="weatherState.precipitationProbability"
-        [humidityPercentage]="weatherState.humidityPercentage"
-        [windSpeed]="weatherState.windSpeed"
-      ></app-current-weather>
+    <ng-template #doneLoadingLocation>
+      <p-progressSpinner
+        *ngIf="weatherState.loadingCurrent; else doneLoadingCurrent"
+      ></p-progressSpinner>
+
+      <ng-template #doneLoadingCurrent>
+        <app-location-details
+          [locationName]="weatherState.locationName"
+          [time]="weatherState.date"
+          [weatherDescription]="weatherState.currentWeatherDescription"
+        ></app-location-details>
+        <app-current-weather
+          [temperature]="weatherState.currentTemperature"
+          [precipitationProbability]="
+            weatherState.currentPrecipitationProbability
+          "
+          [humidityPercentage]="weatherState.currentHumidityPercentage"
+          [windSpeed]="weatherState.currentWindSpeed"
+        ></app-current-weather>
+      </ng-template>
+
+      <p-progressSpinner
+        *ngIf="weatherState.loadingOneCall; else doneLoadingOneCall"
+      ></p-progressSpinner>
+
+      <ng-template #doneLoadingOneCall>
+        <app-weather-forecast></app-weather-forecast>
+      </ng-template>
     </ng-template>
   </ng-container>
 </ng-container>

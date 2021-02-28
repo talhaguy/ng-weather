@@ -30,15 +30,45 @@ export class WeatherEffects {
           locationName: data.name,
           currentTemperature: data.main.temp,
           date: data.dt,
-          weatherDescription: desc,
-          precipitationProbability: 0,
-          humidityPercentage: data.main.humidity,
-          windSpeed: data.wind.speed,
+          currentWeatherDescription: desc,
+          currentHumidityPercentage: data.main.humidity,
+          currentWindSpeed: data.wind.speed,
         });
       }),
       catchError((error) => {
         return of(
           weatherActions.getCurrentForecastError({
+            error: error.message,
+          })
+        );
+      })
+    );
+  });
+
+  getOneCallForecastStart$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(weatherActions.getOneCallForecastStart),
+      concatLatestFrom(() => this.store.select('location')),
+      exhaustMap(([action, locationState]) => {
+        if (!locationState.latitude || !locationState.longitude) {
+          throw new Error('Coordinates not available');
+        }
+
+        return this.weatherApiService.getForecastByCoordinates(
+          locationState.latitude,
+          locationState.longitude
+        );
+      }),
+      map((data) => {
+        const precipitation = data.hourly.length > 0 ? data.hourly[0].pop : 0;
+
+        return weatherActions.getOneCallForecastSuccess({
+          currentPrecipitationProbability: precipitation,
+        });
+      }),
+      catchError((error) => {
+        return of(
+          weatherActions.getOneCallForecastError({
             error: error.message,
           })
         );

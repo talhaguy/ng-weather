@@ -1,10 +1,12 @@
 export interface WeatherState {
   loading: boolean;
+  loadingCurrent: boolean;
+  loadingOneCall: boolean;
   locationName?: string;
-  weatherDescription?: string;
   date?: number;
+  currentWeatherDescription?: string;
   currentTemperature?: number;
-  precipitationProbability?: number;
-  humidityPercentage?: number;
-  windSpeed?: number;
+  currentPrecipitationProbability?: number;
+  currentHumidityPercentage?: number;
+  currentWindSpeed?: number;
 }

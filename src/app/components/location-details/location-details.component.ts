@@ -6,9 +6,9 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./location-details.component.scss'],
 })
 export class LocationDetailsComponent implements OnInit {
-  @Input() locationName = '';
-  @Input() time = 0;
-  @Input() weatherDescription = '';
+  @Input() locationName?: string;
+  @Input() time?: number;
+  @Input() weatherDescription?: string;
 
   constructor() {}
 

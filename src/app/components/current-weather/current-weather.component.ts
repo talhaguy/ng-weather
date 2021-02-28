@@ -6,10 +6,10 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./current-weather.component.scss'],
 })
 export class CurrentWeatherComponent implements OnInit {
-  @Input() temperature = 0;
-  @Input() precipitationProbability = 0;
-  @Input() humidityPercentage = 0;
-  @Input() windSpeed = 0;
+  @Input() temperature?: number;
+  @Input() precipitationProbability?: number;
+  @Input() humidityPercentage?: number;
+  @Input() windSpeed?: number;
 
   constructor() {}
 

@@ -59,6 +59,7 @@ export class LocationEffects {
             longitude: position.coords.longitude,
           }),
           weatherActions.getCurrentForecastStart(),
+          weatherActions.getOneCallForecastStart(),
         ];
       }),
       catchError((error) => {
