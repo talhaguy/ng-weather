@@ -20,6 +20,7 @@ export const locationReducer = createReducer(
   on(locationActions.denyPermission, (state) => {
     return {
       ...state,
+      loading: false,
       isLocationPermissionGranted: false,
     };
   }),

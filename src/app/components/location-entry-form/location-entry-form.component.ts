@@ -46,6 +46,7 @@ export class LocationEntryFormComponent implements OnInit, AfterViewChecked {
   }
 
   submit(form: NgForm) {
+    if (form.invalid) return;
     this.onSubmit.emit(form.value['zip-code']);
   }
 }

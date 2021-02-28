@@ -1,1 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
+
+.p-inputtext.ng-touched.ng-invalid {
+  border-color: #f44336;
+}
+
+.p-float-label > .ng-touched.ng-pristine + label {
+  color: #f44336;
+}

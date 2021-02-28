@@ -1,12 +1,29 @@
-<button (click)="toggleFormVisibility()">
-  Search for forecast by Zip Code
-</button>
-
 <form
   (ngSubmit)="submit(zipCodeForm)"
   *ngIf="isFormVisible"
   #zipCodeForm="ngForm"
 >
-  <input type="text" name="zip-code" #zipCodeInput ngModel required />
-  <button type="submit">Submit</button>
+  <span class="p-float-label">
+    <input
+      type="text"
+      id="zip-code"
+      name="zip-code"
+      pInputText
+      #zipCodeInput
+      ngModel
+      required
+      minlength="1"
+    />
+    <label for="zip-code">Zip Code</label>
+  </span>
+  <p-button label="Submit" type="submit"></p-button>
 </form>
+
+<button
+  (click)="toggleFormVisibility()"
+  pButton
+  pRipple
+  type="button"
+  [label]="!isFormVisible ? 'Search for forecast by Zip Code' : 'Cancel'"
+  class="p-button-text"
+></button>
