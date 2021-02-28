@@ -1,3 +1,5 @@
 <div *ngIf="!(locationName | isUndefined)">{{ locationName }}</div>
-<div *ngIf="!(time | isUndefined)">{{ time | date }}</div>
+<div *ngIf="!(time | isUndefined)">
+  {{ time! | unitConversion: "unix time":"js time" | date }}
+</div>
 <div *ngIf="!(weatherDescription | isUndefined)">{{ weatherDescription }}</div>

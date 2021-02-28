@@ -1,7 +1,20 @@
 <div *ngIf="icon"><img [src]="icon | weatherIconUrl" /></div>
-<div *ngIf="!(temperature | isUndefined)">{{ temperature }}</div>
-<div *ngIf="!(precipitationProbability | isUndefined)">
-  {{ precipitationProbability }}
+<div *ngIf="!(temperature | isUndefined)">
+  {{ temperature! | unitConversion: "kelvin":"farenheight" | number: "1.0-0" }}
+  &deg;F
 </div>
-<div *ngIf="!(humidityPercentage | isUndefined)">{{ humidityPercentage }}</div>
-<div *ngIf="!(windSpeed | isUndefined)">{{ windSpeed }}</div>
+<div *ngIf="!(precipitationProbability | isUndefined)">
+  Precipitation: {{ precipitationProbability }}%
+</div>
+<div *ngIf="!(humidityPercentage | isUndefined)">
+  Humidity: {{ humidityPercentage }}%
+</div>
+<div *ngIf="!(windSpeed | isUndefined)">
+  Wind:
+  {{
+    windSpeed!
+      | unitConversion: "meters per second":"miles per hour"
+      | number: "1.0-0"
+  }}
+  mph
+</div>

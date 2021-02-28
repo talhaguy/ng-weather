@@ -1,6 +1,20 @@
-<div>{{ weatherForDay.date | date: "EEE" }}</div>
+<div>
+  {{ weatherForDay.date | unitConversion: "unix time":"js time" | date: "EEE" }}
+</div>
 <div *ngIf="weatherForDay.icon">
   <img [src]="weatherForDay.icon | weatherIconUrl" />
 </div>
-<div>{{ weatherForDay.high }}</div>
-<div>{{ weatherForDay.low }}</div>
+<div>
+  {{
+    weatherForDay.high
+      | unitConversion: "kelvin":"farenheight"
+      | number: "1.0-0"
+  }}
+  &deg;F
+</div>
+<div>
+  {{
+    weatherForDay.low | unitConversion: "kelvin":"farenheight" | number: "1.0-0"
+  }}
+  &deg;F
+</div>

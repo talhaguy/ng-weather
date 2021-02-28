@@ -25,6 +25,7 @@ import { WeatherApiKeyInterceptor } from './interceptors/weather-api-key.interce
 import { IsUndefinedPipe } from './pipes/is-undefined.pipe';
 import { WeatherForecastDayComponent } from './components/weather-forecast-day/weather-forecast-day.component';
 import { WeatherIconUrlPipe } from './pipes/weather-icon-url.pipe';
+import { UnitConversionPipe } from './pipes/unit-conversion.pipe';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { WeatherIconUrlPipe } from './pipes/weather-icon-url.pipe';
     IsUndefinedPipe,
     WeatherForecastDayComponent,
     WeatherIconUrlPipe,
+    UnitConversionPipe,
   ],
   imports: [
     BrowserModule,

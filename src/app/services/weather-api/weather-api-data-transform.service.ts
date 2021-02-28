@@ -1,13 +1,12 @@
 import { Injectable } from '@angular/core';
 import { WeatherDailyForecast } from 'src/app/store/weather/WeatherState';
-import { UnitConversionService } from '../unit-conversion.service';
 import { OneCallForecastDaily } from './OneCallForecastResponse';
 
 @Injectable({
   providedIn: 'root',
 })
 export class WeatherApiDataTransformService {
-  constructor(private unitConversionService: UnitConversionService) {}
+  constructor() {}
 
   convertOneCallDailyToDailyForecast(
     oneCallDailyForecastList: OneCallForecastDaily[]
@@ -15,9 +14,7 @@ export class WeatherApiDataTransformService {
     return oneCallDailyForecastList.map<WeatherDailyForecast>(
       (oneCallDailyForecast) => {
         return {
-          date: this.unitConversionService.convertUnixToJSTimestamp(
-            oneCallDailyForecast.dt
-          ),
+          date: oneCallDailyForecast.dt,
           icon:
             oneCallDailyForecast.weather.length > 0
               ? oneCallDailyForecast.weather[0].icon
