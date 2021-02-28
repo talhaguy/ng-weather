@@ -17,15 +17,20 @@ export class LocationEffects {
       exhaustMap((action) => {
         return this.geoLocationService.getGeolocationsPermissionStatus();
       }),
-      map((permissionStatus) => {
+      switchMap((permissionStatus) => {
         if (permissionStatus === GeolocationPermissionStatus.Denied) {
-          return locationActions.denyPermission({
-            message: 'You have previously denied location permissions',
-          });
+          return [
+            locationActions.denyPermission({
+              message: 'You have previously denied location permissions',
+            }),
+          ];
         } else if (permissionStatus === GeolocationPermissionStatus.Prompt) {
-          return locationActions.showPermissionsConfirmation();
+          return [locationActions.showPermissionsConfirmation()];
         } else {
-          return locationActions.requestPermissionAndStartGettingLocation();
+          return [
+            locationActions.grantPermission(),
+            locationActions.requestPermissionAndStartGettingLocation(),
+          ];
         }
       })
     );
@@ -53,7 +58,6 @@ export class LocationEffects {
       }),
       switchMap((position) => {
         return [
-          locationActions.grantPermission(),
           locationActions.updateCoordinates({
             latitude: position.coords.latitude,
             longitude: position.coords.longitude,

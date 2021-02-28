@@ -2,6 +2,10 @@
 
 <ng-container *ngIf="locationState$ | async as locationState">
   <ng-container *ngIf="weatherState$ | async as weatherState">
+    <app-location-permission-status
+      [hasPermission]="locationState.isLocationPermissionGranted"
+    ></app-location-permission-status>
+
     <p-progressSpinner
       *ngIf="locationState.loading; else doneLoadingLocation"
     ></p-progressSpinner>

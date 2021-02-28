@@ -68,8 +68,6 @@ export class GeoLocationService {
         'To have the most seamless and accurate experience, we will request your location. Fear not though - If you choose not to provide permission, you may still use manual zip code entry to get your forecast.',
       acceptLabel: 'Continue to Request for Location Permission',
       rejectVisible: false,
-      // rejectLabel: 'Block Location Permission',
-      // rejectButtonStyleClass: 'p-button-text',
       icon: 'pi pi-compass',
       header: 'Location Permission Request',
     });

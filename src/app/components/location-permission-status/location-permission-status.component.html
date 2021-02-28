@@ -1,1 +1,10 @@
-<p>location-permission-status works!</p>
+<p>
+  <span class="pi pi-compass"></span>
+  <ng-container *ngIf="hasPermission; else noPermission"
+    >Location permission is enabled</ng-container
+  >
+  <ng-template #noPermission
+    ><span class="pi pi-exclamation-triangle"></span>Location permission is
+    disabled</ng-template
+  >
+</p>
