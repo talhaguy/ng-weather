@@ -20,6 +20,8 @@
           [locationName]="weatherState.locationName"
           [time]="weatherState.date"
           [weatherDescription]="weatherState.currentWeatherDescription"
+          [hasLocationPermissions]="locationState.isLocationPermissionGranted"
+          (onRefreshLocation)="onRefreshLocation()"
         ></app-location-details>
 
         <app-location-entry-form

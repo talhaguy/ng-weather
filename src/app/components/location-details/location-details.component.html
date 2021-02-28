@@ -3,3 +3,8 @@
   {{ time! | unitConversion: "unix time":"js time" | date }}
 </div>
 <div *ngIf="!(weatherDescription | isUndefined)">{{ weatherDescription }}</div>
+<p-button
+  *ngIf="hasLocationPermissions"
+  (click)="refreshLocation()"
+  label="Refresh Location"
+></p-button>
