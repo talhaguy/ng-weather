@@ -1,0 +1,6 @@
+<div>{{ weatherForDay.date | date: "EEE" }}</div>
+<div *ngIf="weatherForDay.icon">
+  <img [src]="weatherForDay.icon | weatherIconUrl" />
+</div>
+<div>{{ weatherForDay.high }}</div>
+<div>{{ weatherForDay.low }}</div>

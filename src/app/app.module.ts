@@ -23,6 +23,8 @@ import { reducers } from './store/app.reducer';
 import { effects } from './store/app.effects';
 import { WeatherApiKeyInterceptor } from './interceptors/weather-api-key.interceptor';
 import { IsUndefinedPipe } from './pipes/is-undefined.pipe';
+import { WeatherForecastDayComponent } from './components/weather-forecast-day/weather-forecast-day.component';
+import { WeatherIconUrlPipe } from './pipes/weather-icon-url.pipe';
 
 @NgModule({
   declarations: [
@@ -35,6 +37,8 @@ import { IsUndefinedPipe } from './pipes/is-undefined.pipe';
     WeatherForecastComponent,
     LocationEntryFormComponent,
     IsUndefinedPipe,
+    WeatherForecastDayComponent,
+    WeatherIconUrlPipe,
   ],
   imports: [
     BrowserModule,

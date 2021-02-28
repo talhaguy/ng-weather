@@ -32,7 +32,9 @@
       ></p-progressSpinner>
 
       <ng-template #doneLoadingOneCall>
-        <app-weather-forecast></app-weather-forecast>
+        <app-weather-forecast
+          [weatherForDayList]="weatherState.dailyForecast"
+        ></app-weather-forecast>
       </ng-template>
     </ng-template>
   </ng-container>

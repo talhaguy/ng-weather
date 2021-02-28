@@ -9,4 +9,12 @@ export interface WeatherState {
   currentPrecipitationProbability?: number;
   currentHumidityPercentage?: number;
   currentWindSpeed?: number;
+  dailyForecast?: WeatherDailyForecast[];
+}
+
+export interface WeatherDailyForecast {
+  date: number;
+  icon?: string;
+  high: number;
+  low: number;
 }

@@ -1,1 +1,7 @@
-<p>weather-forecast works!</p>
+<ul *ngIf="weatherForDayList">
+  <li *ngFor="let weather of weatherForDayList">
+    <app-weather-forecast-day
+      [weatherForDay]="weather"
+    ></app-weather-forecast-day>
+  </li>
+</ul>

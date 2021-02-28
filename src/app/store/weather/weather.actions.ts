@@ -1,4 +1,5 @@
 import { createAction, props } from '@ngrx/store';
+import { WeatherDailyForecast } from './WeatherState';
 
 export const getCurrentForecastStart = createAction(
   '[Weather] Get Current Forecast Start'
@@ -39,4 +40,5 @@ export const getOneCallForecastSuccess = createAction(
 
 export interface OneCallForecastSuccessPayload {
   currentPrecipitationProbability: number;
+  weatherDailyForecastList: WeatherDailyForecast[];
 }

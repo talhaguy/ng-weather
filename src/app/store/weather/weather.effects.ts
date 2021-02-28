@@ -3,6 +3,7 @@ import { Actions, concatLatestFrom, createEffect, ofType } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
 import { of } from 'rxjs';
 import { catchError, exhaustMap, map } from 'rxjs/operators';
+import { WeatherApiDataTransformService } from 'src/app/services/weather-api/weather-api-data-transform.service';
 import { WeatherApiService } from 'src/app/services/weather-api/weather-api.service';
 import { AppState } from '../AppState';
 import * as weatherActions from './weather.actions';
@@ -64,6 +65,9 @@ export class WeatherEffects {
 
         return weatherActions.getOneCallForecastSuccess({
           currentPrecipitationProbability: precipitation,
+          weatherDailyForecastList: this.weatherApiDataTransformService.convertOneCallDailyToDailyForecast(
+            data.daily
+          ),
         });
       }),
       catchError((error) => {
@@ -79,6 +83,7 @@ export class WeatherEffects {
   constructor(
     private actions$: Actions,
     private store: Store<AppState>,
-    private weatherApiService: WeatherApiService
+    private weatherApiService: WeatherApiService,
+    private weatherApiDataTransformService: WeatherApiDataTransformService
   ) {}
 }
