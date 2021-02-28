@@ -38,6 +38,7 @@ export const weatherReducer = createReducer(
       currentWeatherDescription: action.currentWeatherDescription,
       currentHumidityPercentage: action.currentHumidityPercentage,
       currentWindSpeed: action.currentWindSpeed,
+      currentWeatherIcon: action.currentWeatherIcon,
     };
   }),
 

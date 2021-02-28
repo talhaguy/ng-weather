@@ -22,6 +22,7 @@ export interface CurrentForecastSuccessPayload {
   currentTemperature: number;
   currentHumidityPercentage: number;
   currentWindSpeed: number;
+  currentWeatherIcon?: string;
 }
 
 export const getOneCallForecastStart = createAction(

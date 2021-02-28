@@ -10,6 +10,7 @@ export class CurrentWeatherComponent implements OnInit {
   @Input() precipitationProbability?: number;
   @Input() humidityPercentage?: number;
   @Input() windSpeed?: number;
+  @Input() icon?: string;
 
   constructor() {}
 

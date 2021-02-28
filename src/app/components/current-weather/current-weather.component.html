@@ -1,3 +1,4 @@
+<div *ngIf="icon"><img [src]="icon | weatherIconUrl" /></div>
 <div *ngIf="!(temperature | isUndefined)">{{ temperature }}</div>
 <div *ngIf="!(precipitationProbability | isUndefined)">
   {{ precipitationProbability }}

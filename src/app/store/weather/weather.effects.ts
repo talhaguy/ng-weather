@@ -26,6 +26,7 @@ export class WeatherEffects {
       }),
       map((data) => {
         const desc = data.weather.length > 0 ? data.weather[0].main : '';
+        const icon = data.weather.length > 0 ? data.weather[0].icon : undefined;
 
         return weatherActions.getCurrentForecastSuccess({
           locationName: data.name,
@@ -34,6 +35,7 @@ export class WeatherEffects {
           currentWeatherDescription: desc,
           currentHumidityPercentage: data.main.humidity,
           currentWindSpeed: data.wind.speed,
+          currentWeatherIcon: icon,
         });
       }),
       catchError((error) => {
