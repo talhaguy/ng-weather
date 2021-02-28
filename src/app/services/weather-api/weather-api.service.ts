@@ -27,19 +27,12 @@ export class WeatherApiService {
     });
   }
 
+  // note: one call forecast only works with coordinates
   getForecastByCoordinates(latitude: number, longitude: number) {
     return this.http.get<OneCallForecastResponse>(WeatherApiUrls.OneCall, {
       params: {
         lat: latitude + '',
         lon: longitude + '',
-      },
-    });
-  }
-
-  getForecastByZipCode(zipCode: string) {
-    return this.http.get<OneCallForecastResponse>(WeatherApiUrls.OneCall, {
-      params: {
-        zip: zipCode,
       },
     });
   }

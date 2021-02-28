@@ -11,13 +11,10 @@ const initialState: WeatherState = {
 export const weatherReducer = createReducer(
   initialState,
 
-  on(weatherActions.getCurrentForecastStart, (state) => {
-    return {
-      ...state,
-      loadingCurrent: true,
-      loading: !state.loadingCurrent || state.loadingOneCall,
-    };
-  }),
+  on(
+    weatherActions.getCurrentForecastByCoordinatesStart,
+    updateStateForGetCurrentForecastStart
+  ),
 
   on(weatherActions.getCurrentForecastError, (state, action) => {
     return {
@@ -41,6 +38,11 @@ export const weatherReducer = createReducer(
       currentWeatherIcon: action.currentWeatherIcon,
     };
   }),
+
+  on(
+    weatherActions.getCurrentForecastByZipCodeStart,
+    updateStateForGetCurrentForecastStart
+  ),
 
   on(weatherActions.getOneCallForecastStart, (state) => {
     return {
@@ -68,3 +70,11 @@ export const weatherReducer = createReducer(
     };
   })
 );
+
+function updateStateForGetCurrentForecastStart(state: WeatherState) {
+  return {
+    ...state,
+    loadingCurrent: true,
+    loading: !state.loadingCurrent || state.loadingOneCall,
+  };
+}

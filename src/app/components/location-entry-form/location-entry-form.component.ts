@@ -1,37 +1,51 @@
-import { Component, OnInit } from '@angular/core';
-import { Store } from '@ngrx/store';
-import { ConfirmEventType } from 'primeng/api';
-import { AppState } from 'src/app/store/AppState';
-import * as locationActions from '../../store/location/location.actions';
+import {
+  AfterViewChecked,
+  Component,
+  ElementRef,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+  ViewChild,
+} from '@angular/core';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-location-entry-form',
   templateUrl: './location-entry-form.component.html',
   styleUrls: ['./location-entry-form.component.scss'],
 })
-export class LocationEntryFormComponent implements OnInit {
-  constructor(private store: Store<AppState>) {}
+export class LocationEntryFormComponent implements OnInit, AfterViewChecked {
+  @Input() initialFormVisibility?: boolean;
+  @Output() onSubmit = new EventEmitter<string>();
+  @ViewChild('zipCodeInput') zipCodeInput?: ElementRef;
+
+  isFormVisible = false;
+  private justMadeFormVisible = false;
+
+  constructor() {}
 
   ngOnInit(): void {
-    this.store.dispatch(locationActions.checkPermissions());
+    this.isFormVisible =
+      typeof this.initialFormVisibility === 'undefined'
+        ? false
+        : this.initialFormVisibility;
   }
 
-  handleHide(type: ConfirmEventType) {
-    switch (type) {
-      case ConfirmEventType.ACCEPT:
-        this.store.dispatch(
-          locationActions.requestPermissionAndStartGettingLocation()
-        );
-        break;
-      case ConfirmEventType.REJECT:
-      case ConfirmEventType.CANCEL:
-      default:
-        this.store.dispatch(
-          locationActions.denyPermission({
-            message: 'You have chosen not to provide location permission',
-          })
-        );
-        break;
+  toggleFormVisibility() {
+    this.isFormVisible = !this.isFormVisible;
+
+    if (this.isFormVisible) this.justMadeFormVisible = true;
+  }
+
+  ngAfterViewChecked() {
+    if (this.justMadeFormVisible) {
+      this.zipCodeInput?.nativeElement.focus();
+      this.justMadeFormVisible = false;
     }
+  }
+
+  submit(form: NgForm) {
+    this.onSubmit.emit(form.value['zip-code']);
   }
 }

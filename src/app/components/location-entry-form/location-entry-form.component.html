@@ -1,1 +1,12 @@
-<p-confirmDialog (onHide)="handleHide($event)"></p-confirmDialog>
+<button (click)="toggleFormVisibility()">
+  Search for forecast by Zip Code
+</button>
+
+<form
+  (ngSubmit)="submit(zipCodeForm)"
+  *ngIf="isFormVisible"
+  #zipCodeForm="ngForm"
+>
+  <input type="text" name="zip-code" #zipCodeInput ngModel required />
+  <button type="submit">Submit</button>
+</form>

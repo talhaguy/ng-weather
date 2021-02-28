@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { AppState } from 'src/app/store/AppState';
 import { LocationState } from 'src/app/store/location/LocationState';
 import { WeatherState } from 'src/app/store/weather/WeatherState';
+import * as weatherActions from '../../store/weather/weather.actions';
 
 @Component({
   selector: 'app-main-page',
@@ -20,4 +21,12 @@ export class MainPageComponent implements OnInit {
   }
 
   ngOnInit(): void {}
+
+  onZipCodeForSubmit(zipCode: string) {
+    this.store.dispatch(
+      weatherActions.getCurrentForecastByZipCodeStart({
+        zipCode,
+      })
+    );
+  }
 }

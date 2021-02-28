@@ -26,6 +26,7 @@ import { IsUndefinedPipe } from './pipes/is-undefined.pipe';
 import { WeatherForecastDayComponent } from './components/weather-forecast-day/weather-forecast-day.component';
 import { WeatherIconUrlPipe } from './pipes/weather-icon-url.pipe';
 import { UnitConversionPipe } from './pipes/unit-conversion.pipe';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -47,6 +48,7 @@ import { UnitConversionPipe } from './pipes/unit-conversion.pipe';
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
+    FormsModule,
     ConfirmDialogModule,
     ProgressSpinnerModule,
     StoreModule.forRoot(reducers),

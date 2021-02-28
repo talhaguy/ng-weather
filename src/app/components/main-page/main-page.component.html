@@ -1,4 +1,4 @@
-<app-location-entry-form></app-location-entry-form>
+<app-location-permission-dialog></app-location-permission-dialog>
 
 <ng-container *ngIf="locationState$ | async as locationState">
   <ng-container *ngIf="weatherState$ | async as weatherState">
@@ -17,6 +17,11 @@
           [time]="weatherState.date"
           [weatherDescription]="weatherState.currentWeatherDescription"
         ></app-location-details>
+
+        <app-location-entry-form
+          (onSubmit)="onZipCodeForSubmit($event)"
+        ></app-location-entry-form>
+
         <app-current-weather
           [icon]="weatherState.currentWeatherIcon"
           [temperature]="weatherState.currentTemperature"

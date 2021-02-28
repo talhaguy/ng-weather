@@ -58,8 +58,14 @@ export class LocationEffects {
             latitude: position.coords.latitude,
             longitude: position.coords.longitude,
           }),
-          weatherActions.getCurrentForecastStart(),
-          weatherActions.getOneCallForecastStart(),
+          weatherActions.getCurrentForecastByCoordinatesStart({
+            latitude: position.coords.latitude,
+            longitude: position.coords.longitude,
+          }),
+          weatherActions.getOneCallForecastStart({
+            latitude: position.coords.latitude,
+            longitude: position.coords.longitude,
+          }),
         ];
       }),
       catchError((error) => {
