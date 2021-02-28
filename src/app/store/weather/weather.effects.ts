@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { of } from 'rxjs';
 import { catchError, exhaustMap, map, switchMap, tap } from 'rxjs/operators';
+import { AppMessageService } from 'src/app/services/app-message.service';
 import { CurrentForecaseResponse } from 'src/app/services/weather-api/CurrentForecastResponse';
 import { WeatherApiDataTransformService } from 'src/app/services/weather-api/weather-api-data-transform.service';
 import { WeatherApiService } from 'src/app/services/weather-api/weather-api.service';
@@ -23,6 +24,8 @@ export class WeatherEffects {
               return weatherActions.getCurrentForecastSuccess(successPayload);
             }),
             catchError((error) => {
+              this.appMessageService.showError(error.message);
+
               return of(
                 weatherActions.getCurrentForecastError({
                   error: error.message,
@@ -55,6 +58,8 @@ export class WeatherEffects {
               ];
             }),
             catchError((error) => {
+              this.appMessageService.showError(error.message);
+
               return of(
                 weatherActions.getCurrentForecastError({
                   error: error.message,
@@ -88,6 +93,8 @@ export class WeatherEffects {
               });
             }),
             catchError((error) => {
+              this.appMessageService.showError(error.message);
+
               return of(
                 weatherActions.getOneCallForecastError({
                   error: error.message,
@@ -102,7 +109,8 @@ export class WeatherEffects {
   constructor(
     private actions$: Actions,
     private weatherApiService: WeatherApiService,
-    private weatherApiDataTransformService: WeatherApiDataTransformService
+    private weatherApiDataTransformService: WeatherApiDataTransformService,
+    private appMessageService: AppMessageService
   ) {}
 
   private createCurrentForecastSuccessActionPayload(

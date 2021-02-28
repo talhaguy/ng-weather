@@ -8,6 +8,7 @@ import {
   GeoLocationService,
 } from 'src/app/services/geolocation.service';
 import { of } from 'rxjs';
+import { AppMessageService } from 'src/app/services/app-message.service';
 
 @Injectable()
 export class LocationEffects {
@@ -54,28 +55,31 @@ export class LocationEffects {
     return this.actions$.pipe(
       ofType(locationActions.requestPermissionAndStartGettingLocation),
       exhaustMap((action) => {
-        return this.geoLocationService.getCurrentPosition();
-      }),
-      switchMap((position) => {
-        return [
-          locationActions.updateCoordinates({
-            latitude: position.coords.latitude,
-            longitude: position.coords.longitude,
+        return this.geoLocationService.getCurrentPosition().pipe(
+          switchMap((position) => {
+            return [
+              locationActions.updateCoordinates({
+                latitude: position.coords.latitude,
+                longitude: position.coords.longitude,
+              }),
+              weatherActions.getCurrentForecastByCoordinatesStart({
+                latitude: position.coords.latitude,
+                longitude: position.coords.longitude,
+              }),
+              weatherActions.getOneCallForecastStart({
+                latitude: position.coords.latitude,
+                longitude: position.coords.longitude,
+              }),
+            ];
           }),
-          weatherActions.getCurrentForecastByCoordinatesStart({
-            latitude: position.coords.latitude,
-            longitude: position.coords.longitude,
-          }),
-          weatherActions.getOneCallForecastStart({
-            latitude: position.coords.latitude,
-            longitude: position.coords.longitude,
-          }),
-        ];
-      }),
-      catchError((error) => {
-        return of(
-          locationActions.denyPermission({
-            message: error.message,
+          catchError((error) => {
+            this.appMessageService.showError(error.message);
+
+            return of(
+              locationActions.denyPermission({
+                message: error.message,
+              })
+            );
           })
         );
       })
@@ -84,6 +88,7 @@ export class LocationEffects {
 
   constructor(
     private actions$: Actions,
-    private geoLocationService: GeoLocationService
+    private geoLocationService: GeoLocationService,
+    private appMessageService: AppMessageService
   ) {}
 }

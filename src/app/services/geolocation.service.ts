@@ -39,7 +39,7 @@ export class GeoLocationService {
         tid = window.setTimeout(() => {
           subscriber.error(
             new Error(
-              'Getting location is taking longer than expected. Please ensure your system level permissions are set to allow location permissions to your web browser.'
+              'Getting location is taking longer than expected. Please ensure your system level permissions are set to allow location permissions to your web browser. In the meantime, you may try manually typing a zip code to get your forecast.'
             )
           );
         }, 7000);

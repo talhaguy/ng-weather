@@ -5,6 +5,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { InputTextModule } from 'primeng/inputtext';
+import { ToastModule } from 'primeng/toast';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -19,7 +20,7 @@ import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from 'src/environments/environment';
-import { ConfirmationService } from 'primeng/api';
+import { ConfirmationService, MessageService } from 'primeng/api';
 import { reducers } from './store/app.reducer';
 import { effects } from './store/app.effects';
 import { WeatherApiKeyInterceptor } from './interceptors/weather-api-key.interceptor';
@@ -56,6 +57,7 @@ import { DatePipe } from '@angular/common';
     ConfirmDialogModule,
     ProgressSpinnerModule,
     InputTextModule,
+    ToastModule,
     StoreModule.forRoot(reducers),
     EffectsModule.forRoot(effects),
     StoreDevtoolsModule.instrument({
@@ -67,6 +69,7 @@ import { DatePipe } from '@angular/common';
     ConfirmationService,
     DatePipe,
     UnitConversionPipe,
+    MessageService,
     {
       provide: HTTP_INTERCEPTORS,
       multi: true,
