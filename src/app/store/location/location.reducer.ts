@@ -36,6 +36,7 @@ export const locationReducer = createReducer(
     return {
       ...state,
       loading: false,
+      isLocationPermissionGranted: true,
       latitude: action.latitude,
       longitude: action.longitude,
     };

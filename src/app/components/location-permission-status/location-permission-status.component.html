@@ -1,10 +1,12 @@
-<p>
-  <span class="pi pi-compass"></span>
-  <ng-container *ngIf="hasPermission; else noPermission"
-    >Location permission is enabled</ng-container
-  >
-  <ng-template #noPermission
-    ><span class="pi pi-exclamation-triangle"></span>Location permission is
-    disabled</ng-template
-  >
-</p>
+<div class="location-permission-status">
+  <span class="pi pi-compass location-permission-status__icon"></span>
+  <ng-container *ngIf="hasPermission; else noPermission">
+    <span>Location permission is enabled</span>
+  </ng-container>
+  <ng-template #noPermission>
+    <span
+      class="pi pi-exclamation-triangle location-permission-status__icon"
+    ></span>
+    <span>Location permission is disabled</span>
+  </ng-template>
+</div>

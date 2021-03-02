@@ -4,57 +4,63 @@
 
 <ng-container *ngIf="locationState$ | async as locationState">
   <ng-container *ngIf="weatherState$ | async as weatherState">
-    <app-location-permission-status
-      [hasPermission]="locationState.isLocationPermissionGranted"
-    ></app-location-permission-status>
-
-    <p-progressSpinner
-      *ngIf="locationState.loading; else doneLoadingLocation"
-    ></p-progressSpinner>
-
-    <ng-template #doneLoadingLocation>
-      <p-progressSpinner
-        *ngIf="weatherState.loadingCurrent; else doneLoadingCurrent"
-      ></p-progressSpinner>
-
-      <ng-template #doneLoadingCurrent>
-        <app-location-details
-          [locationName]="weatherState.locationName"
-          [time]="weatherState.date"
-          [weatherDescription]="weatherState.currentWeatherDescription"
-          [hasLocationPermissions]="locationState.isLocationPermissionGranted"
-          (onRefreshLocation)="onRefreshLocation()"
-        ></app-location-details>
-
-        <app-location-entry-form
-          (onSubmit)="onZipCodeForSubmit($event)"
-        ></app-location-entry-form>
-
-        <app-current-weather
-          [icon]="weatherState.currentWeatherIcon"
-          [temperature]="weatherState.currentTemperature"
-          [precipitationProbability]="
-            weatherState.currentPrecipitationProbability
-          "
-          [humidityPercentage]="weatherState.currentHumidityPercentage"
-          [windSpeed]="weatherState.currentWindSpeed"
-        ></app-current-weather>
-      </ng-template>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col">
+          <app-location-permission-status
+            [hasPermission]="locationState.isLocationPermissionGranted"
+          ></app-location-permission-status>
+        </div>
+      </div>
 
       <p-progressSpinner
-        *ngIf="weatherState.loadingOneCall; else doneLoadingOneCall"
+        *ngIf="locationState.loading; else doneLoadingLocation"
       ></p-progressSpinner>
 
-      <ng-template #doneLoadingOneCall>
-        <app-weather-forecast-hour-chart
-          *ngIf="weatherState.hourlyForecast"
-          [hourlyForecastList]="weatherState.hourlyForecast"
-        ></app-weather-forecast-hour-chart>
+      <ng-template #doneLoadingLocation>
+        <p-progressSpinner
+          *ngIf="weatherState.loadingCurrent; else doneLoadingCurrent"
+        ></p-progressSpinner>
 
-        <app-weather-forecast
-          [weatherForDayList]="weatherState.dailyForecast"
-        ></app-weather-forecast>
+        <ng-template #doneLoadingCurrent>
+          <app-location-details
+            [locationName]="weatherState.locationName"
+            [time]="weatherState.date"
+            [weatherDescription]="weatherState.currentWeatherDescription"
+            [hasLocationPermissions]="locationState.isLocationPermissionGranted"
+            (onRefreshLocation)="onRefreshLocation()"
+          ></app-location-details>
+
+          <app-location-entry-form
+            (onSubmit)="onZipCodeForSubmit($event)"
+          ></app-location-entry-form>
+
+          <app-current-weather
+            [icon]="weatherState.currentWeatherIcon"
+            [temperature]="weatherState.currentTemperature"
+            [precipitationProbability]="
+              weatherState.currentPrecipitationProbability
+            "
+            [humidityPercentage]="weatherState.currentHumidityPercentage"
+            [windSpeed]="weatherState.currentWindSpeed"
+          ></app-current-weather>
+        </ng-template>
+
+        <p-progressSpinner
+          *ngIf="weatherState.loadingOneCall; else doneLoadingOneCall"
+        ></p-progressSpinner>
+
+        <ng-template #doneLoadingOneCall>
+          <app-weather-forecast-hour-chart
+            *ngIf="weatherState.hourlyForecast"
+            [hourlyForecastList]="weatherState.hourlyForecast"
+          ></app-weather-forecast-hour-chart>
+
+          <app-weather-forecast
+            [weatherForDayList]="weatherState.dailyForecast"
+          ></app-weather-forecast>
+        </ng-template>
       </ng-template>
-    </ng-template>
+    </div>
   </ng-container>
 </ng-container>

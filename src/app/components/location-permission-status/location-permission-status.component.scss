@@ -1,0 +1,13 @@
+.location-permission-status {
+  text-align: right;
+  padding: 10px;
+
+  &__icon {
+    margin-right: 10px;
+  }
+
+  span {
+    display: inline-block;
+    vertical-align: middle;
+  }
+}
