@@ -13,52 +13,85 @@
         </div>
       </div>
 
-      <p-progressSpinner
-        *ngIf="locationState.loading; else doneLoadingLocation"
-      ></p-progressSpinner>
+      <div class="row" *ngIf="locationState.loading; else doneLoadingLocation">
+        <div class="col">
+          <p-progressSpinner></p-progressSpinner>
+        </div>
+      </div>
 
       <ng-template #doneLoadingLocation>
-        <p-progressSpinner
+        <div
+          class="row"
           *ngIf="weatherState.loadingCurrent; else doneLoadingCurrent"
-        ></p-progressSpinner>
+        >
+          <div class="col">
+            <p-progressSpinner></p-progressSpinner>
+          </div>
+        </div>
 
         <ng-template #doneLoadingCurrent>
-          <app-location-details
-            [locationName]="weatherState.locationName"
-            [time]="weatherState.date"
-            [weatherDescription]="weatherState.currentWeatherDescription"
-            [hasLocationPermissions]="locationState.isLocationPermissionGranted"
-            (onRefreshLocation)="onRefreshLocation()"
-          ></app-location-details>
+          <div class="row">
+            <div class="col">
+              <app-location-details
+                [locationName]="weatherState.locationName"
+                [time]="weatherState.date"
+                [weatherDescription]="weatherState.currentWeatherDescription"
+                [hasLocationPermissions]="
+                  locationState.isLocationPermissionGranted
+                "
+                (onRefreshLocation)="onRefreshLocation()"
+              ></app-location-details>
+            </div>
+          </div>
 
-          <app-location-entry-form
-            (onSubmit)="onZipCodeForSubmit($event)"
-          ></app-location-entry-form>
+          <div class="row">
+            <div class="col">
+              <app-location-entry-form
+                (onSubmit)="onZipCodeForSubmit($event)"
+              ></app-location-entry-form>
+            </div>
+          </div>
 
-          <app-current-weather
-            [icon]="weatherState.currentWeatherIcon"
-            [temperature]="weatherState.currentTemperature"
-            [precipitationProbability]="
-              weatherState.currentPrecipitationProbability
-            "
-            [humidityPercentage]="weatherState.currentHumidityPercentage"
-            [windSpeed]="weatherState.currentWindSpeed"
-          ></app-current-weather>
+          <div class="row">
+            <div class="col">
+              <app-current-weather
+                [icon]="weatherState.currentWeatherIcon"
+                [temperature]="weatherState.currentTemperature"
+                [precipitationProbability]="
+                  weatherState.currentPrecipitationProbability
+                "
+                [humidityPercentage]="weatherState.currentHumidityPercentage"
+                [windSpeed]="weatherState.currentWindSpeed"
+              ></app-current-weather>
+            </div>
+          </div>
         </ng-template>
 
-        <p-progressSpinner
+        <div
+          class="row"
           *ngIf="weatherState.loadingOneCall; else doneLoadingOneCall"
-        ></p-progressSpinner>
+        >
+          <div class="col">
+            <p-progressSpinner></p-progressSpinner>
+          </div>
+        </div>
 
         <ng-template #doneLoadingOneCall>
-          <app-weather-forecast-hour-chart
-            *ngIf="weatherState.hourlyForecast"
-            [hourlyForecastList]="weatherState.hourlyForecast"
-          ></app-weather-forecast-hour-chart>
+          <div class="row" *ngIf="weatherState.hourlyForecast">
+            <div class="col">
+              <app-weather-forecast-hour-chart
+                [hourlyForecastList]="weatherState.hourlyForecast"
+              ></app-weather-forecast-hour-chart>
+            </div>
+          </div>
 
-          <app-weather-forecast
-            [weatherForDayList]="weatherState.dailyForecast"
-          ></app-weather-forecast>
+          <div class="row">
+            <div class="col">
+              <app-weather-forecast
+                [weatherForDayList]="weatherState.dailyForecast"
+              ></app-weather-forecast>
+            </div>
+          </div>
         </ng-template>
       </ng-template>
     </div>
