@@ -30,7 +30,7 @@
         </div>
 
         <ng-template #doneLoadingCurrent>
-          <div class="row">
+          <div class="row mar-b-10">
             <div class="col">
               <app-location-details
                 [locationName]="weatherState.locationName"
@@ -44,7 +44,7 @@
             </div>
           </div>
 
-          <div class="row">
+          <div class="row mar-b-10">
             <div class="col">
               <app-location-entry-form
                 (onSubmit)="onZipCodeForSubmit($event)"

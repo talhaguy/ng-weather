@@ -1,0 +1,16 @@
+.location-entry-form {
+  text-align: center;
+
+  &__form {
+    display: flex;
+    justify-content: center;
+  }
+
+  &__input-cont {
+    margin-right: 5px;
+  }
+
+  &__btn {
+    font-size: 1.4rem;
+  }
+}

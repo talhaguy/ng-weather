@@ -1,29 +1,41 @@
-<form
-  (ngSubmit)="submit(zipCodeForm)"
-  *ngIf="isFormVisible"
-  #zipCodeForm="ngForm"
->
-  <span class="p-float-label">
-    <input
-      type="text"
-      id="zip-code"
-      name="zip-code"
-      pInputText
-      #zipCodeInput
-      ngModel
-      required
-      minlength="1"
-    />
-    <label for="zip-code">Zip Code</label>
-  </span>
-  <p-button label="Submit" type="submit"></p-button>
-</form>
+<div class="location-entry-form">
+  <form
+    (ngSubmit)="submit(zipCodeForm)"
+    *ngIf="isFormVisible"
+    #zipCodeForm="ngForm"
+    class="location-entry-form__form"
+  >
+    <div class="location-entry-form__input-cont">
+      <span class="p-float-label">
+        <input
+          type="text"
+          id="zip-code"
+          name="zip-code"
+          pInputText
+          #zipCodeInput
+          ngModel
+          required
+          minlength="1"
+        />
+        <label for="zip-code">Zip Code</label>
+      </span>
+    </div>
+    <div>
+      <button
+        pButton
+        type="submit"
+        class="location-entry-form__btn"
+        label="Submit"
+      ></button>
+    </div>
+  </form>
 
-<button
-  (click)="toggleFormVisibility()"
-  pButton
-  pRipple
-  type="button"
-  [label]="!isFormVisible ? 'Search for forecast by Zip Code' : 'Cancel'"
-  class="p-button-text"
-></button>
+  <button
+    (click)="toggleFormVisibility()"
+    pButton
+    pRipple
+    type="button"
+    [label]="!isFormVisible ? 'Search for forecast by Zip Code' : 'Cancel'"
+    class="p-button-text location-entry-form__btn"
+  ></button>
+</div>
