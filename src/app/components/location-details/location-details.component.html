@@ -1,10 +1,23 @@
-<div *ngIf="!(locationName | isUndefined)">{{ locationName }}</div>
-<div *ngIf="!(time | isUndefined)">
-  {{ time! | unitConversion: "unix time":"js time" | date }}
+<div class="location-details">
+  <div class="location-details__location" *ngIf="!(locationName | isUndefined)">
+    <span>{{ locationName }}</span
+    ><button
+      pButton
+      pRipple
+      *ngIf="hasLocationPermissions"
+      (click)="refreshLocation()"
+      type="button"
+      aria-label="Refresh Location"
+      icon="pi pi-refresh"
+      class="p-button-rounded p-button-text p-button-lg"
+    ></button>
+  </div>
+
+  <div *ngIf="!(time | isUndefined)">
+    {{ time! | unitConversion: "unix time":"js time" | date }}
+  </div>
+
+  <div *ngIf="!(weatherDescription | isUndefined)">
+    {{ weatherDescription }}
+  </div>
 </div>
-<div *ngIf="!(weatherDescription | isUndefined)">{{ weatherDescription }}</div>
-<p-button
-  *ngIf="hasLocationPermissions"
-  (click)="refreshLocation()"
-  label="Refresh Location"
-></p-button>
