@@ -1,20 +1,29 @@
-<div *ngIf="icon"><img [src]="icon | weatherIconUrl" /></div>
-<div *ngIf="!(temperature | isUndefined)">
-  {{ temperature! | unitConversion: "kelvin":"farenheight" | number: "1.0-0" }}
-  &deg;F
-</div>
-<div *ngIf="!(precipitationProbability | isUndefined)">
-  Precipitation: {{ precipitationProbability }}%
-</div>
-<div *ngIf="!(humidityPercentage | isUndefined)">
-  Humidity: {{ humidityPercentage }}%
-</div>
-<div *ngIf="!(windSpeed | isUndefined)">
-  Wind:
-  {{
-    windSpeed!
-      | unitConversion: "meters per second":"miles per hour"
-      | number: "1.0-0"
-  }}
-  mph
+<div class="current-weather">
+  <div *ngIf="icon"><img [src]="icon | weatherIconUrl" /></div>
+  <div
+    class="current-weather__temperature"
+    *ngIf="!(temperature | isUndefined)"
+  >
+    {{
+      temperature! | unitConversion: "kelvin":"farenheight" | number: "1.0-0"
+    }}
+  </div>
+  <div class="current-weather__unit">&deg;F</div>
+  <div class="current-weather__addtl-details">
+    <div *ngIf="!(precipitationProbability | isUndefined)">
+      Precipitation: {{ precipitationProbability }}%
+    </div>
+    <div *ngIf="!(humidityPercentage | isUndefined)">
+      Humidity: {{ humidityPercentage }}%
+    </div>
+    <div *ngIf="!(windSpeed | isUndefined)">
+      Wind:
+      {{
+        windSpeed!
+          | unitConversion: "meters per second":"miles per hour"
+          | number: "1.0-0"
+      }}
+      mph
+    </div>
+  </div>
 </div>
