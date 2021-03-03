@@ -14,7 +14,7 @@
       </div>
 
       <div class="row" *ngIf="locationState.loading; else doneLoadingLocation">
-        <div class="col">
+        <div class="col ta-c">
           <p-progressSpinner></p-progressSpinner>
         </div>
       </div>
@@ -24,7 +24,7 @@
           class="row"
           *ngIf="weatherState.loadingCurrent; else doneLoadingCurrent"
         >
-          <div class="col">
+          <div class="col ta-c">
             <p-progressSpinner></p-progressSpinner>
           </div>
         </div>
@@ -71,7 +71,7 @@
           class="row"
           *ngIf="weatherState.loadingOneCall; else doneLoadingOneCall"
         >
-          <div class="col">
+          <div class="col ta-c">
             <p-progressSpinner></p-progressSpinner>
           </div>
         </div>
