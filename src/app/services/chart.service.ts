@@ -9,6 +9,34 @@ import { Chart } from 'chart.js';
 })
 export class ChartService {
   private chart?: Chart;
+  private readonly CHART_LINE_COLOR = 'rgba(255, 204, 0, 1)';
+  private readonly CHART_FILL_COLOR = 'rgba(255, 245, 217, 1)';
+  private readonly CHART_OPTIONS = {
+    responsive: true,
+    legend: {
+      display: false,
+    },
+    maintainAspectRatio: false,
+    tooltips: {
+      enabled: false,
+    },
+    scales: {
+      xAxes: [
+        {
+          gridLines: {
+            display: false,
+          },
+        },
+      ],
+      yAxes: [
+        {
+          gridLines: {
+            display: false,
+          },
+        },
+      ],
+    },
+  };
 
   constructor(
     private datePipe: DatePipe,
@@ -57,9 +85,12 @@ export class ChartService {
               label: 'Temperature',
               data: temperatures,
               fill: 'origin',
+              borderColor: this.CHART_LINE_COLOR,
+              backgroundColor: this.CHART_FILL_COLOR,
             },
           ],
         },
+        options: this.CHART_OPTIONS,
       });
     }
   }
