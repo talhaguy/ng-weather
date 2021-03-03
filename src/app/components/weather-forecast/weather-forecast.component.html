@@ -1,4 +1,4 @@
-<ul *ngIf="weatherForDayList">
+<ul *ngIf="weatherForDayList" class="weather-forecast">
   <li *ngFor="let weather of weatherForDayList">
     <app-weather-forecast-day
       [weatherForDay]="weather"

@@ -1,20 +1,28 @@
-<div>
-  {{ weatherForDay.date | unitConversion: "unix time":"js time" | date: "EEE" }}
-</div>
-<div *ngIf="weatherForDay.icon">
-  <img [src]="weatherForDay.icon | weatherIconUrl" />
-</div>
-<div>
-  {{
-    weatherForDay.high
-      | unitConversion: "kelvin":"farenheight"
-      | number: "1.0-0"
-  }}
-  &deg;F
-</div>
-<div>
-  {{
-    weatherForDay.low | unitConversion: "kelvin":"farenheight" | number: "1.0-0"
-  }}
-  &deg;F
+<div class="weather-forecast-day">
+  <div class="weather-forecast-day__dow">
+    {{
+      weatherForDay.date | unitConversion: "unix time":"js time" | date: "EEE"
+    }}
+  </div>
+  <div *ngIf="weatherForDay.icon" class="weather-forecast-day__icon">
+    <img [src]="weatherForDay.icon | weatherIconUrl" />
+  </div>
+  <div class="weather-forecast-day__temps">
+    <span class="weather-forecast-day__high">
+      {{
+        weatherForDay.high
+          | unitConversion: "kelvin":"farenheight"
+          | number: "1.0-0"
+      }}
+      &deg;F
+    </span>
+    <span class="weather-forecast-day__low">
+      {{
+        weatherForDay.low
+          | unitConversion: "kelvin":"farenheight"
+          | number: "1.0-0"
+      }}
+      &deg;F
+    </span>
+  </div>
 </div>

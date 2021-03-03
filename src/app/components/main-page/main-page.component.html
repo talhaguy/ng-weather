@@ -77,7 +77,7 @@
         </div>
 
         <ng-template #doneLoadingOneCall>
-          <div class="row mar-b-10" *ngIf="weatherState.hourlyForecast">
+          <div class="row mar-b-20" *ngIf="weatherState.hourlyForecast">
             <div class="col">
               <app-weather-forecast-hour-chart
                 [hourlyForecastList]="weatherState.hourlyForecast"
